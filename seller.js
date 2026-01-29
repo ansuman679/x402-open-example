@@ -27,8 +27,9 @@ app.use(paymentMiddleware(
     },
   },
   {
-    url: "http://localhost:4021/facilitator",
-  }
+  url: process.env.FACILITATOR_URL || "http://localhost:4021/facilitator",
+}
+
 ));
 
 // Implement your route
@@ -41,6 +42,9 @@ app.get("/weather", (req, res) => {
   });
 });
 
-app.listen(4021, () => {
-  console.log(`Server listening at http://localhost:4021`);
+const PORT = process.env.PORT || 4021;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
+
